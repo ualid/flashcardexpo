@@ -1,5 +1,5 @@
 Esse projeto foi feito para testar os conhecimentos do curso nanodegree da udacity em react.
-Temo como objetivo construir um app utilizando o react-native e todo o seu ecossistema. O projeto proposto foi criar um app para criar flashcards e nele realizar o treinamento tendo uma notificação todos os dias para lembrar de realizar o treinamento. Foi utilizado nesse projeto as seguintes libs:
+Temo como objetivo construir um app utilizando o react-native e todo o seu ecossistema. O projeto proposto foi criar um app de estudo utilizando flashcards e nele realizar o treinamento, tendo uma notificação todos os dias para lembrar de realizar o treinamento. Foi utilizado nesse projeto as seguintes libs:
 1.	expo 
 2.	react 
 3.	react-native
