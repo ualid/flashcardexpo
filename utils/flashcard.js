@@ -1,0 +1,1 @@
+export const FLASHCARD_STORAGE_KEY = 'flashcard:flash'
