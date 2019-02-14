@@ -7,6 +7,8 @@ import { black } from "./utils/colors";
 import AppRouter from "./utils/routers";
 import reducer from "./reducers/index";
 import { Constants } from 'expo'
+import configStore from './utils/configStore'
+import { PersistGate } from 'redux-persist/integration/react';
 
 import { Notifications, Permissions } from 'expo'
 
@@ -52,7 +54,7 @@ export default class App extends Component {
                 let tomorrow = new Date()
                 tomorrow.setDate(tomorrow.getDate() + 1)
                 tomorrow.setHours(20)
-                tomorrow.setMintutes(0)
+                tomorrow.setMinutes(0)
              
                 Notifications.scheduleLocalNotificationAsync(
                   this.createNotification(),
@@ -67,14 +69,17 @@ export default class App extends Component {
         }
       })
     }
-
   render() {
+    const {store, persistor } = configStore();
+    //createStore(reducer, applyMiddleware(thunk))
     return (
-      <Provider store={createStore(reducer, applyMiddleware(thunk))}>
+      <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <View style={{ flex: 1 }}>
           <StatusBarApp backgroundColor={black} barStyle="light-content" />
           <AppRouter />
         </View>
+        </PersistGate>
       </Provider>
     );
   }

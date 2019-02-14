@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {  AsyncStorage, FlatList } from "react-native";
+import {   FlatList } from "react-native";
 import { connect } from "react-redux";
 import { ListItem } from "react-native-elements";
 import { receiveDecks } from "../actions/deck";
@@ -7,12 +7,6 @@ import { FLASHCARD_STORAGE_KEY } from "../utils/flashcard";
 import { Actions } from "react-native-router-flux";
 
 class Deck extends Component {
-  componentWillMount() {
-    AsyncStorage.getItem(FLASHCARD_STORAGE_KEY).then(data => {
-      let dataObj = JSON.parse(data);
-      this.props.dispatch(receiveDecks(dataObj));
-    });
-  }
 
   viewDeck = deck => {
     Actions.card({ deck, id: deck.id, title: deck.titleDeck });

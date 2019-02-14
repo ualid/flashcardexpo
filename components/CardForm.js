@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import {
   View,
   StyleSheet,
-  TouchableHighlight,
-  AsyncStorage
+  TouchableHighlight
 } from "react-native";
 import { black } from "../utils/colors";
 import { Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { updateDeck } from "../actions/deck";
-import { FLASHCARD_STORAGE_KEY } from "../utils/flashcard";
 import cloneDeep from 'lodash/cloneDeep';
 import { SCLAlert, SCLAlertButton } from "react-native-scl-alert";
 import { Actions } from 'react-native-router-flux';
@@ -42,13 +40,6 @@ class CardForm extends Component {
       })
     );
     delete decks[deck.id];
-    AsyncStorage.setItem(
-      FLASHCARD_STORAGE_KEY,
-      JSON.stringify({
-        [deck.id]: deck,
-        ...decks
-      })
-    );
 
     this.handleOpen();
   };

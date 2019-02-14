@@ -6,22 +6,24 @@ const INITIAL_STATE = {
 }
 
 function decks (state = {}, action) {
-  switch (action.type) {
+  const {payload, type} = action;
+  console.log('action ', action,  ' payload ', payload)
+  switch (type) {
     case RECEIVE_DECK :
       return {
         ...state,
-        ...action.decks,
+        ...payload,
       }
       case ADD_ENTRY :
         return {
           ...state,
-          ...action.deck,
+          ...payload,
         }
         
       case UPDATE_DECK :
       let decks = cloneDeep(state)
-      delete decks[action.deck.id]
-      decks[action.deck.id] = action.deck
+      delete decks[payload.id]
+      decks[payload.id] = payload
       return {
           ...decks
         }

@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TouchableHighlight, AsyncStorage } from "react-native";
+import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import { black, white } from "../utils/colors";
 import { Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
-import { submitEntry } from '../utils/api'
 import { addEntry } from '../actions/deck'
-import { FLASHCARD_STORAGE_KEY } from '../utils/flashcard'
 import { Actions } from 'react-native-router-flux';
  
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -17,7 +15,8 @@ import {
 class DeckForm extends Component {
   state = {
     show: false,
-    titleDeck: ''
+    titleDeck: '',
+    deckCreated: ''
   }
 
   handleOpen = () => {
@@ -25,7 +24,10 @@ class DeckForm extends Component {
   }
 
   handleClose = () => {
-    Actions.pop();
+    this.setState({ show: false })
+    Actions.card(this.state.deckCreated);
+    
+  //  Actions.replace('card', {id:this.state.deckCreated.id, deck:this.state.deckCreated});
   }
 
 
@@ -35,9 +37,14 @@ class DeckForm extends Component {
     this.props.dispatch(addEntry({
       [key]: deck
     }))
-    await AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY, JSON.stringify({
-      [key]: deck
-    }))
+
+
+    this.setState(state => {
+        return {
+            ...state,
+            deckCreated: deck
+        }
+    })
 
     this.handleOpen(); 
     

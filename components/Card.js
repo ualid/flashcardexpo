@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state, {deck}) {
+  console.log('state > ', state, ' deck ', deck)
   return {
     ...state,
     deck

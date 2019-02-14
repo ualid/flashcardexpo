@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import {
   View,
   StyleSheet,
@@ -8,12 +8,9 @@ import { black } from "../utils/colors";
 import { connect } from "react-redux";
 import { Button, Text } from "react-native-elements";
 import { Actions } from "react-native-router-flux";
-import { FLASHCARD_STORAGE_KEY } from "../utils/flashcard";
 import { red, green } from "../utils/colors";
 import { SCLAlert, SCLAlertButton } from "react-native-scl-alert";
-
-class Quiz extends Component {
-  state = {
+const initialState = {
     actionTitle: "Answer",
     question: "",
     answer: "",
@@ -26,12 +23,34 @@ class Quiz extends Component {
     showSucess: false,
     showError: false,
     percent: 0
-  };
+}
+class Quiz extends PureComponent {
+  state = initialState;
 
   handleClose = () => {
     Actions.pop();
   }
+  handleRestart = () => {
+    const deck = this.props.deck;
+    const newState = {
+      question: deck.questions[0].ask,
+      textViewUser: deck.questions[0].ask,
+      answer: deck.questions[0].answer,
+      totalQuestions: deck.questions.length,
+      currentQuestion: 1,
+      textAction: "Answer"
+    };
+    this.setState(state => {
+      return {
+      ...state,
+        ...newState,
+        showSucess: false,
+        questionCorrect: 0,
+        questionIncorrect: 0
+      }
 
+    })
+  }
   handlerCorrect = () => {
     const { currentQuestion, totalQuestions } = this.state;
     if (currentQuestion < totalQuestions) {
@@ -203,9 +222,12 @@ class Quiz extends Component {
             subtitle={`You got ${percent}% of the questions`}
             onRequestClose={() => {}}
           >
+          
             <SCLAlertButton theme="success" onPress={this.handleClose}>
               OK
             </SCLAlertButton>
+            <SCLAlertButton theme="success" onPress={this.handleRestart}>Restart</SCLAlertButton>
+
           </SCLAlert>
         </View>
       </View>

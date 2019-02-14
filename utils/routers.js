@@ -45,6 +45,7 @@ const AppRouter = () => {
       <Scene key="root">
         <Scene
           key="deckForm"
+          name="deckForm"
           component={DeckForm}
           title="Deck Form"
           headerPressColorAndroid={white}
@@ -57,7 +58,6 @@ const AppRouter = () => {
           component={Deck}
           title="Decks"
           initial
-          name="user-o"
           renderRightButton={iconPlus}
           headerPressColorAndroid={white}
         />
