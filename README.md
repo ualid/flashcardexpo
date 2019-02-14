@@ -1,15 +1,16 @@
 Esse projeto foi feito para testar os conhecimentos do curso nanodegree da udacity em react.
 Temo como objetivo construir um app utilizando o react-native e todo o seu ecossistema. O projeto proposto foi criar um app de estudo utilizando flashcards e nele realizar o treinamento, tendo uma notificação todos os dias para lembrar de realizar o treinamento. Foi utilizado nesse projeto as seguintes libs:
-1.	expo 
-2.	react 
-3.	react-native
-4.	react-native-elements
-5.	react-native-fontawesome
-6.	react-native-router-flux
-7.	react-native-scl-alert
-8.	react-redux
-9.	redux
+01.	expo 
+02.	react 
+03.	react-native
+04.	react-native-elements
+05.	react-native-fontawesome
+06.	react-native-router-flux
+07.	react-native-scl-alert
+08.	react-redux
+09.	redux
 10.	redux-thunk
+11. redux-persist
 
  Para rodar a aplicação basta acessar o diretório onde está o projeto e fazer o seguinte:
 1.	Executar o comando no terminal “npm install”;
